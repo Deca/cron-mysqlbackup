@@ -16,6 +16,7 @@ MYSQL="full path to the mysql executable es: /etc/mysql/bin/mysql"
 
 MYSQLDUMP="full path to the mysqldump executable es: /etc/mysql/bin/mysqldump"
 
+
 <b>CRONJOB</b>
 
 If you want to run the script every add the script to crontab, 
