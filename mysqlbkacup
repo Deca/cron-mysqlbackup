@@ -1,0 +1,26 @@
+#!/bin/bash
+
+USER="user"
+PASSWORD="pass"
+OUTPUT="path_to_backup"
+MYSQL="path_to_mysql"
+MYSQLDUMP="path_to_mysqldump"
+
+echo "Rotating backups..."
+
+rm -rf $OUTPUT/04
+mv $OUTPUT/03 $OUTPUT/04
+mv $OUTPUT/02 $OUTPUT/03
+mv $OUTPUT/01 $OUTPUT/02
+mkdir $OUTPUT/01
+cd $OUTPUT/ && cd $OUTPUT/01
+
+databases=`$MYSQL  --user=$USER --password=$PASSWORD -e "SHOW DATABASES;" | tr -d "| " | grep -v Database`
+
+for db in $databases; do
+    if [[ "$db" != "information_schema" ]] && [[ "$db" != _* ]] ; then
+        echo "Dumping database: $db"
+        $MYSQLDUMP --force --opt --user=$USER --password=$PASSWORD --databases $db > $OUTPUT/01/`date +%Y%m%d`.$db.sql
+        gzip $OUTPUT/01/`date +%Y%m%d`.$db.sql
+    fi
+done
