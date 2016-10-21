@@ -4,7 +4,8 @@ A simple bash script to backup mysql databases in 4 different folders, every tim
 
 <b>USAGE</b>
 
-Replace those parameters with yours
+Replace those parameters with yours:
+
 USER="mysql user"
 
 PASSWORD="mysql password"
@@ -16,6 +17,7 @@ MYSQL="full path to the mysql executable es: /etc/mysql/bin/mysql"
 MYSQLDUMP="full path to the mysqldump executable es: /etc/mysql/bin/mysqldump"
 
 <b>CRONJOB</b>
+
 If you want to run the script every add the script to crontab, 
 
 run: crontab -e
