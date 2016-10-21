@@ -17,7 +17,9 @@ MYSQLDUMP="full path to the mysqldump executable es: /etc/mysql/bin/mysqldump"
 
 <b>CRONJOB</b>
 If you want to run the script every add the script to crontab, 
+
 run: crontab -e
 
 in that case I run the script at 23pm every 2 days
+
 0 23 */2 * * /bin/sh /PATH_TO_SCRIPT/mysqlbackup.sh
